@@ -49,7 +49,7 @@ function Techstack() {
           <p
             style={{ textAlign: "center", color: "#5E5E61", fontSize: "1rem" }}
           >
-            <span className="green">Html5</span>
+            <span className="green">HTML5</span>
             <br />
             <br />
             Html의 태그들을 알고 상황에 따라 알맞게 사용할 수 있습니다.
@@ -62,7 +62,7 @@ function Techstack() {
           <p
             style={{ textAlign: "center", color: "#5E5E61", fontSize: "1rem" }}
           >
-            <span className="green">Css3</span>
+            <span className="green">CSS3</span>
             <br />
             <br />
             css 기본 문법을 사용할 줄 알고, 간단한 애니메이션을 구현할 수
