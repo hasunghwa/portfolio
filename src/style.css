@@ -192,7 +192,7 @@ button:focus {
   position: relative;
   display: block;
   height: 5px;
-  width: 0;
+  width: 0px;
   border-radius: 16px;
   background: #918970;
   bottom: 1px;
@@ -205,6 +205,18 @@ button:focus {
   width: 100%;
 }
 
+.navbar-nav .navbar-active a::after {
+  content: "";
+  position: relative;
+  display: block;
+  height: 5px;
+  border-radius: 16px;
+  background: #918970;
+  bottom: 1px;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+}
 /* --------- */
 /* Home section */
 /* --------- */
@@ -461,12 +473,13 @@ button:focus {
 }
 
 .project-card-view {
-  box-shadow: rgba(154, 166, 230, 0.5) 0px 8px 24px !important;
+  box-shadow: rgba(186, 150, 242, 0.5) 0px 8px 24px !important;
   color: #5e5e61 !important;
   background-color: transparent !important;
   opacity: 0.9 !important;
   transition: all 0.5s ease 0s !important;
   height: 100% !important;
+  border: none !important;
 }
 .project-card-view:hover {
   transform: scale(1.02) !important;
@@ -556,7 +569,6 @@ button:focus {
   margin: 15px !important;
   padding: 10px !important;
   opacity: 0.93 !important;
-
   vertical-align: middle !important;
   text-align: center !important;
   border-radius: 5px !important;

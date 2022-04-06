@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import logo from "../Assets/logo.png";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { CgGitFork } from "react-icons/cg";
 import { ImBlog } from "react-icons/im";
 import {
@@ -19,6 +19,24 @@ import { CgFileDocument } from "react-icons/cg";
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
+  const pathname = useLocation().pathname;
+  const targets = useRef([]);
+
+  useEffect(() => {
+    if (pathname == "/") {
+      targets.current[0].classList.add("navbar-active");
+      targets.current[1].className = "nav-item";
+      targets.current[2].className = "nav-item";
+    } else if (pathname == "/about") {
+      targets.current[1].classList.add("navbar-active");
+      targets.current[0].className = "nav-item";
+      targets.current[2].className = "nav-item";
+    } else if (pathname == "/project") {
+      targets.current[2].classList.add("navbar-active");
+      targets.current[0].className = "nav-item";
+      targets.current[1].className = "nav-item";
+    }
+  }, [pathname]);
 
   function scrollHandler() {
     if (window.scrollY >= 20) {
@@ -28,6 +46,37 @@ function NavBar() {
     }
   }
 
+  function mouseOver(index) {
+    if (index == 0) {
+      targets.current[0].classList.add("navbar-active");
+      targets.current[1].className = "nav-item";
+      targets.current[2].className = "nav-item";
+    } else if (index == 1) {
+      targets.current[1].classList.add("navbar-active");
+      targets.current[0].className = "nav-item";
+      targets.current[2].className = "nav-item";
+    } else if (index == 2) {
+      targets.current[2].classList.add("navbar-active");
+      targets.current[0].className = "nav-item";
+      targets.current[1].className = "nav-item";
+    }
+  }
+
+  function mouseLeave() {
+    if (pathname == "/") {
+      targets.current[0].classList.add("navbar-active");
+      targets.current[1].className = "nav-item";
+      targets.current[2].className = "nav-item";
+    } else if (pathname == "/about") {
+      targets.current[1].classList.add("navbar-active");
+      targets.current[0].className = "nav-item";
+      targets.current[2].className = "nav-item";
+    } else if (pathname == "/project") {
+      targets.current[2].classList.add("navbar-active");
+      targets.current[0].className = "nav-item";
+      targets.current[1].className = "nav-item";
+    }
+  }
   window.addEventListener("scroll", scrollHandler);
 
   return (
@@ -53,13 +102,21 @@ function NavBar() {
         </Navbar.Toggle>
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto" defaultActiveKey="#home">
-            <Nav.Item>
+            <Nav.Item
+              ref={(el) => (targets.current[0] = el)}
+              onMouseOver={() => mouseOver(0)}
+              onMouseLeave={() => mouseLeave()}
+            >
               <Nav.Link as={Link} to="/" onClick={() => updateExpanded(false)}>
                 <AiOutlineHome style={{ marginBottom: "2px" }} /> Home
               </Nav.Link>
             </Nav.Item>
 
-            <Nav.Item>
+            <Nav.Item
+              ref={(el) => (targets.current[1] = el)}
+              onMouseOver={() => mouseOver(1)}
+              onMouseLeave={() => mouseLeave()}
+            >
               <Nav.Link
                 as={Link}
                 to="/about"
@@ -69,7 +126,11 @@ function NavBar() {
               </Nav.Link>
             </Nav.Item>
 
-            <Nav.Item>
+            <Nav.Item
+              ref={(el) => (targets.current[2] = el)}
+              onMouseOver={() => mouseOver(2)}
+              onMouseLeave={() => mouseLeave()}
+            >
               <Nav.Link
                 as={Link}
                 to="/project"
