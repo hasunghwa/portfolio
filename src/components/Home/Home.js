@@ -20,7 +20,7 @@ function Home() {
 
               <h1 className="heading-name">
                 신입
-                <strong className="main-name"> 프론트엔드 개발자</strong>
+                <strong className="main-name"> 웹 개발자</strong>
               </h1>
 
               <div style={{ padding: 50, textAlign: "left" }}>
